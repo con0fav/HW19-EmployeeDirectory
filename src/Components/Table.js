@@ -1,31 +1,25 @@
+import TableBody from "./TableBody";
 
-
-function Table() {
+function Table({headings, emp, handleSort}) {
     return (
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
+                    {headings.map(({name, width}) => {
+                        return (
+                            <th 
+                            scope="col"
+                            key={name}
+                            style={{width}}
+                            onClick={() => {
+                                handleSort(name.toLowerCase());
+                            }}>{name}</th>
+
+                        )
+                    })}
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                </tr>
-            </tbody>
+            <TableBody emp={emp} />
         </table>
     )
 }
