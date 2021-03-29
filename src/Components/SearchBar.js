@@ -8,7 +8,6 @@ function SearchBar({handleSearchChange}) {
                 className="form-control"
                 type="search"
                 placeholder="Search"
-                aria-label="Search"
                 onChange={e => handleSearchChange(e)}
             />
         </form>

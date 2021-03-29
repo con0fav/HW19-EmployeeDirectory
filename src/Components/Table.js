@@ -2,7 +2,7 @@ import TableBody from "./TableBody";
 
 function Table({ headings, emp, handleSort }) {
     return (
-        <table class="table">
+        <table class="table" id="emp">
             <thead>
                 <tr>
                     <th scope="col">#</th>
