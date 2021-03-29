@@ -1,21 +1,25 @@
 import TableBody from "./TableBody";
+import API from "../utils/API";
+import React from "react";
 
-function Table({ headings, emp, handleSort }) {
-    return (
-        <table class="table" id="emp">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">City</th>
-                    <th scope="col">Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                <TableBody />
-            </tbody>
-        </table>
-    )
+class Table extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            emp: [],
+            searchedEmp: [],
+            sortEmp: "asc",
+            empSearc: e => {
+                const filter = e.target.val;
+                const searchRes = this.state.emp.filter(item => {
+                    let values = Object.values(item)
+                    .join("")
+                    .toLowerCase();
+                return values.indexOf(filter.toLowerCase()) !== -1;
+                });
+            }
+        }
+    }
 }
 
 export default Table;
