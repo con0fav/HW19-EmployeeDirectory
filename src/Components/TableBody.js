@@ -18,7 +18,7 @@ function TableBody({emp}) {
                             </td>
                             <td>
                                 <td data-th="city" className="name-cell align-middle">
-                                    {location.city}
+                                    {city}
                                 </td>
                             </td>
                             <td>
@@ -37,5 +37,6 @@ function TableBody({emp}) {
 
 }
 
+//maybe {location.city}
 
 export default TableBody;
