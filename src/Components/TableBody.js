@@ -1,3 +1,5 @@
+import API from "../utils/API"
+
 function TableBody(props) {
 
     return props.emp.map(emp => (
