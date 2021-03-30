@@ -6,12 +6,12 @@ class Table extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            emp: [],
+            emps: [],
             searchedEmp: [],
             sortEmp: "asc",
-            empSearc: e => {
+            empSearch: e => {
                 const filter = e.target.val;
-                const searchRes = this.state.emp.filter(item => {
+                const searchRes = this.state.emps.filter(item => {
                     let values = Object.values(item)
                         .join("")
                         .toLowerCase();
@@ -23,13 +23,13 @@ class Table extends React.Component {
         this.sortBy = this.sortBy.bind(this);
     }
     componentDidMount() {
-        API.getEmp().then(answer => {
-            this.setState({ emp: answer.data.res, searchedEmp: answer.data.res });
+        API.getEmps().then(answer => {
+            this.setState({ emps: answer.data.results, searchedEmp: answer.data.results });
         });
     }
     sortBy(key, data) {
         this.setState({
-            emp: data.sort((a, b) => {
+            emps: data.sort((a, b) => {
                 if (key === "city") {
                     return a.city.localeCompare(b.city);
                 } else {
@@ -37,14 +37,17 @@ class Table extends React.Component {
                 }
             })
         });
-        this.setState({ sortEmp: this.state.sortEmp === "asc" ? "desc" : "asc" });
+        this.setState({ sortEmps: this.state.sortEmps === "asc" ? "desc" : "asc" });
     }
 
+    
     render() {
+        const emp = this.state.searchedEmp;
+        console.log(this.state.searchedEmp);
         return (
             <div className="container">
                 <div className="table-responsive">
-                    <table id="employees" className="table">
+                    <table id="emps" className="table">
                         <thead>
                             <tr>
                                 <th>image</th>
@@ -54,16 +57,13 @@ class Table extends React.Component {
                             </tr>
                         </thead>
                         <tbody>
-                            <TableBody searchedEmp={this.state.searchedEmp} />
+                            <TableBody emps={emp} />
                         </tbody>
                     </table>
                 </div>
             </div>
         )
     }
-
-
-
 
 }
 
